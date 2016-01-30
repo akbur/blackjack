@@ -25,12 +25,13 @@
       return card;
     };
 
-    Hand.prototype.stand = function() {};
+    Hand.prototype.stand = function() {
+      return this.trigger('stand', this);
+    };
 
     Hand.prototype.bust = function() {
       if (this.scores()[0] > 21) {
-        console.log('bust');
-        this.trigger('bust');
+        this.trigger('bust', this);
         return true;
       }
     };
@@ -49,6 +50,21 @@
 
     Hand.prototype.scores = function() {
       return [this.minScore(), this.minScore() + 10 * this.hasAce()];
+    };
+
+    Hand.prototype.dealerTurn = function() {
+      this.first().flip();
+      while (this.scores()[0] < 17) {
+        this.hit();
+      }
+      if (this.scores()[0] <= 21) {
+        return this.stand();
+      }
+    };
+
+    Hand.prototype.getBetterScore = function() {
+      var score;
+      return score = this.scores()[1] <= 21 ? this.scores()[1] : this.scores()[0];
     };
 
     return Hand;
