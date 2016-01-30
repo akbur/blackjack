@@ -10,6 +10,9 @@ describe 'deck', ->
 
   describe 'hit', ->
     it 'should give the last card from the deck', ->
-      assert.strictEqual deck.length, 50
+      assert.strictEqual deck.get 'length', 50
       assert.strictEqual deck.last(), hand.hit()
-      assert.strictEqual deck.length, 49
+      assert.strictEqual deck.get 'length', 49
+
+  # describe 'bust', ->
+  #   it 'should call bust if the payer has more than 21', ->

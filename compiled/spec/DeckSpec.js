@@ -14,9 +14,9 @@
     });
     return describe('hit', function() {
       return it('should give the last card from the deck', function() {
-        assert.strictEqual(deck.length, 50);
+        assert.strictEqual(deck.get('length', 50));
         assert.strictEqual(deck.last(), hand.hit());
-        return assert.strictEqual(deck.length, 49);
+        return assert.strictEqual(deck.get('length', 49));
       });
     });
   });

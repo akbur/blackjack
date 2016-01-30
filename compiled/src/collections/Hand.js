@@ -54,10 +54,10 @@
 
     Hand.prototype.dealerTurn = function() {
       this.first().flip();
-      while (this.scores()[0] < 17) {
+      while (this.getBetterScore() < 17) {
         this.hit();
       }
-      if (this.scores()[0] <= 21) {
+      if (this.getBetterScore() <= 21) {
         return this.stand();
       }
     };
@@ -72,5 +72,3 @@
   })(Backbone.Collection);
 
 }).call(this);
-
-//# sourceMappingURL=Hand.js.map

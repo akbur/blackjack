@@ -33,8 +33,8 @@ class window.Hand extends Backbone.Collection
 
   dealerTurn: ->
     @first().flip()
-    @hit() while @scores()[0] < 17
-    if @scores()[0] <= 21 then @stand()
+    @hit() while @getBetterScore() < 17
+    if @getBetterScore() <= 21 then @stand()
 
   getBetterScore: ->
     score = if @scores()[1] <= 21
