@@ -20,7 +20,25 @@
           return _this.render();
         };
       })(this));
+      this.collection.on('bust', (function(_this) {
+        return function() {
+          return _this.alertWinner();
+        };
+      })(this));
       return this.render();
+    };
+
+    HandView.prototype.alertWinner = function() {
+      var context;
+      this.render();
+      context = this;
+      return setTimeout(function() {
+        if (context.collection.isDealer) {
+          return alert('You win!');
+        } else {
+          return alert('You lose!');
+        }
+      }, 500);
     };
 
     HandView.prototype.render = function() {
@@ -31,7 +49,7 @@
           model: card
         }).$el;
       }));
-      return this.$('.score').text(this.collection.scores()[0]);
+      return this.$('.score').text(this.collection.getBetterScore());
     };
 
     return HandView;
